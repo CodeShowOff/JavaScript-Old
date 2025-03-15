@@ -1,0 +1,62 @@
+### 1. **Relational Comparisons (`>`, `<`, `>=`, `<=`)**
+- Relational operators convert **null** to `0` before comparing.
+- Examples:
+  ```javascript
+  console.log(null > 0);  // false (0 > 0 is false)
+  console.log(null < 1);  // true  (0 < 1 is true)
+  console.log(null >= 0); // true  (0 >= 0 is true)
+  ```
+
+---
+
+### 2. **Equality Comparisons (`==` and `===`)**
+- For `==` (loose equality):JavaScript performs type coercion to compare the two values.
+  - **null** is only loosely equal to **undefined**.
+  - **null** does **not** get converted to a number or any other type.
+
+  - Examples:
+    ```javascript
+    console.log(null == undefined); // true
+    console.log(null == 0);         // false
+    ```
+- For `===` (strict equality):
+  - No type conversion occurs; **null** is strictly equal only to **null**.
+  - Example-1:
+    ```javascript
+    console.log(null === 0); // false
+    console.log(null === null); // true
+    ```
+  
+  - Example-2:
+  - The comparison `"2" === 2` uses the **strict equality** operator (`===`), which **does not perform type coercion**.
+  ```javascript
+    console.log("2" === 2); // false
+    ```
+    - `"2"` is a **string**, and `2` is a **number**.
+    - Since the types are different, the result is **false**.
+---
+
+### 3. **Arithmetic Operations**
+- In arithmetic operations, **null** is converted to `0`.
+- Examples:
+  ```javascript
+  console.log(null + 1); // 1  (null becomes 0, so 0 + 1 = 1)
+  console.log(null - 1); // -1 (0 - 1 = -1)
+  ```
+
+---
+
+### 4. **Comparison of Other Types in Relational Operators**
+- **Strings**: Converted to numbers (if possible).
+  ```javascript
+  console.log("5" > 2); // true ("5" becomes 5)
+  console.log("abc" > 2); // false ("abc" becomes NaN, and NaN is not comparable)
+  ```
+- **`undefined`**: Converted to `NaN` in relational operations, making all comparisons involving `undefined` return `false`.
+  ```javascript
+  console.log(undefined > 0); // false
+  console.log(undefined < 0); // false
+  console.log(undefined >= 0); // false
+  ```
+
+---

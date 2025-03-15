@@ -1,0 +1,36 @@
+Coercion in JavaScript:
+
+**Coercion** is the automatic or implicit conversion of values from one data type to another by JavaScript, typically in situations involving comparison or arithmetic operations.
+
+There are two types of coercion in JavaScript:
+
+1. **Type Coercion (Implicit)**:
+   - JavaScript automatically converts one data type to another during operations, such as comparisons or arithmetic.
+   - Example:
+     ```javascript
+     console.log("2" > 1); // true ("2" is coerced to 2, and 2 > 1)
+     ```
+
+2. **Explicit Coercion**:
+   - You manually convert values from one type to another using functions or methods.
+   - Example:
+     ```javascript
+     let num = Number("2"); // Explicitly converting the string "2" to a number
+     console.log(num); // 2
+     ```
+
+### **Coercion in Equality Comparisons (`==`) vs Strict Equality (`===`)**:
+- **`==` (loose equality)** allows **type coercion**:
+  - Example:
+    ```javascript
+    console.log("2" == 2); // true (string "2" is coerced to number 2)
+    ```
+- **`===` (strict equality)** **does not** allow type coercion:
+  - Example:
+    ```javascript
+    console.log("2" === 2); // false (types are different: string vs number)
+    ```
+
+### Summary:
+- **Type coercion** is JavaScript's automatic conversion of types during operations or comparisons.
+- **Explicit coercion** is when you explicitly convert types using functions like `Number()`, `String()`, etc.
