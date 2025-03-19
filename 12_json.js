@@ -1,6 +1,6 @@
 // APIs:
-// note: its similar to Objects but its not Objects as it doesnt have names
-//       but json doesnt, and most important the variable name should be in String 
+// note: its similar to Objects but its not Objects as it doesnt have names, 
+//       and most important the variable name should be in String 
 
 // API way-1: in objects formats
 // {
