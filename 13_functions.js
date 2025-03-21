@@ -27,6 +27,8 @@ function loginMessage(username = "Shubham"){ // <- default value passed
 console.log(loginMessage("Hitesh"));
 
 
+// --------------------------------------------------------------------------------------------------
+
 function calculateCartPrice(...number){ // Rest operator
     return number; // returns array
 }
@@ -37,10 +39,21 @@ console.log(calculateCartPrice(232, 344, 343, 233, 544));
 function calculateCartPrice(val1, val2, ...numbers){ // Rest operator
     return numbers; 
 }   
-//                            val1 val2  ...numbers...
+//                             val1 val2 ...numbers...
 console.log(calculateCartPrice(232, 344, 343, 233, 544));
 
+/*
+Why Doesn't the First Console Log Print the Full Array?
+Function Overriding: The second calculateCartPrice() replaces the first one.
+So, when console.log(calculateCartPrice(232, 344, 343)); is executed, it uses the second function definition.
+In calculateCartPrice(232, 344, 343);:
+val1 = 232
+val2 = 344
+numbers = [343]
+Thus, [343] is printed instead of [232, 344, 343].
+*/
 
+//------------------------------------------------------------------------------------------------------
 
 // Passing object to function:
 const user = {
