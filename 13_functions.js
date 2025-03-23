@@ -82,3 +82,21 @@ function returnLastIndexValue(anyArray){
 
 console.log(returnLastIndexValue(newArray));
 console.log(returnLastIndexValue([23, 32, 42, 43]));
+
+
+//-----------------------------------------------------------------------------------------------
+
+// Another way to declare a function:
+
+const myFunc = function(){
+    console.log("Shubham");    
+}
+myFunc();
+
+console.log(myFunc);// [Function: myFunc]
+
+
+const myFunc2 = function(num1, num2){
+    return num1 + num2;
+}
+console.log(myFunc2(3, 5));

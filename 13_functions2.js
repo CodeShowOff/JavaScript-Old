@@ -24,6 +24,7 @@ function addOne(num){
 addOne(5);// -> allowed
 
 
+
 // addTwo(5);// -> not allowed (Error)
 
 const addTwo = function(num){

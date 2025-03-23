@@ -1,3 +1,5 @@
+// Note: In JS variables are very strong and it can hold many things like: functions, objects, primptive and non primptive values, etc.
+
 const accountId = 12345;
 let accountEmail = "shubham@code.com";
 var accountPass = "123@pass";
