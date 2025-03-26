@@ -1,3 +1,4 @@
+// To understand the code:
 const obj1 = { name: "Alice" };
 const obj2 = { name: "Bob" };
 
