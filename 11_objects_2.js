@@ -83,9 +83,3 @@ const course = {
     // Method-2: using alias of the variable name
     const {courseInstructor: instructor} = course;
     console.log(instructor);// Shubham
-
-
-    
-
-
-    
