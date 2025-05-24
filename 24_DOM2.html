@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent');
+    // console.log(parent);
+    // console.log(parent.children); // so from this we know that every element has its children.
+    
+    // console.log(parent.children[1].innerHTML);
+
+    // for (let i = 0; i < parent.children.length; i++) {
+    //     console.log(parent.children[i].innerHTML);        
+    // }
+
+    parent.children[1].style.backgroundColor = "green";
+    parent.children[2].style.backgroundColor = "orange";
+
+    // console.log(parent.firstElementChild); // accesses the first element (not text nodes or comments) that is a child of parent.
+    // console.log(parent.lastElementChild); // accesses the last element (not text nodes or comments) that is a child of parent.
+    
+    // const dayOne = document.querySelector('.day');
+    // console.log(dayOne);
+    // console.log(dayOne.parentElement); // to go to parent element from child element
+    // console.log(dayOne.nextElementSibling); // to go to next sibling element
+
+    console.log("Nodes: ", parent.childNodes); // gives all the child nodes.
+
+</script>
+</html>

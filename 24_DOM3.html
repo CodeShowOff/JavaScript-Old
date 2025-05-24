@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    
+</body>
+
+<script>
+    const divEle = document.createElement('div');
+    console.log(divEle);
+    divEle.className = "main"
+    divEle.id = "1"
+    divEle.setAttribute("title", "generated title") // we can set other attributes like id, className, style and all like this too. Its also more optimised than them, so its the more preferred one.
+    divEle.style.backgroundColor = "orange"
+    divEle.style.padding = "12px"  
+    
+    // way-1:
+    // divEle.innerText = "Hii I'm BloodWyrm"
+
+    //way-2: 
+    const addText = document.createTextNode("Hii I'm BloodWyrm")
+    divEle.appendChild(addText)
+
+    // refer to documnetation for difference between both the ways
+
+    document.body.appendChild(divEle)
+
+</script>
+</html>
