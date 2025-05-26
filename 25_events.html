@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Images:</h2>
+    <div>
+        <ul id="images">
+            <li><img width="200px" id="photoshop"
+                    src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt="photoshop"></li>
+            <li><img width="200px" id="japan"
+                    src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="river"
+                    src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="owl"
+                    src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="prayer"
+                    src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    // There are several ways to handle events in JavaScript:
+    
+    // 1. Inline Event Handlers (not recommended): in html element itselt:
+    // <button onclick="alert('Clicked!')">Click Me</button>
+
+    // 2. HTML DOM Property (no problem, but gives only limited information): 
+    // document.getElementById('owl').onclick = function () {
+    //     alert("clicked on owl")
+    // }
+
+    // 3. addEventListener() (recommended):
+    // document.getElementById('owl').addEventListener('click', function(){
+    //     alert('clicked on owl')
+    // }, false)
+
+
+
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log(e);
+    //     // 'e' is an object and has many events mostly of browser and environment:
+    //     // important ones are: timestamp, type, preventDefault, target, toElement, srcElement, currentTarget,
+    //     // clientX, clientY, screenX, screenY, altkey, ctrlkey, shiftkey, keyCode
+    // }, false)
+
+
+    // event propagation:
+    // 1. event bubbling
+    // 2. event capturing
+    
+    // when third parameter is false: event bubbling:
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log('clicked inside the ul');
+
+    //     // if we click anywhere in 'ul':
+    //     // output: clicked inside the ul
+    // }, false)
+    
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log('owl clicked');
+
+    //     // if we click anywhere in 'ul' except 'owl':
+    //     // output: clicked inside the ul
+
+    //     // if we click on 'owl':
+    //     // output: owl clicked
+    //     //         clicked inside the ul
+    //     // so here event propagated from bottom to top, this is called bubbling.
+    // }, false)
+
+
+    // // when third parameter is true: event capturing:
+    // document.getElementById('images').addEventListener('click', function (e) {
+    //     console.log('clicked inside the ul');
+
+    //     // if we click anywhere in 'ul':
+    //     // output: clicked inside the ul
+    // }, true)
+
+    // document.getElementById('owl').addEventListener('click', function (e) {
+    //     console.log('owl clicked');
+
+    //     // if we click anywhere in 'ul' except 'owl':
+    //     // output: clicked inside the ul
+
+    //     // if we click on 'owl':
+    //     // output: clicked inside the ul
+    //     //         owl clicked      
+    //     // so here event propagated from top to bottom, this is called capturing.
+    // }, false)
+
+
+    // // to stop event propagation:
+    // document.getElementById('images').addEventListener('click', function(e){
+    //     console.log('clicked inside the ul');
+    // }, false)
+    
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log('owl clicked');
+    //     // this will prevent propagation:
+    //     e.stopPropagation()
+    // }, false)
+
+
+    // // to prevent or change default behaviour:
+    // document.getElementById('google').addEventListener('click', function(e) {
+    //     e.preventDefault(); // due to this, link wont take me to google.com
+    //     console.log('google clicked');        
+    // })
+
+
+    // to remove items on clicking:
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e);
+        console.log(e.target); // gives the target where clicked.
+        console.log(e.target.parentNode); // gives the parent node of target.
+
+        // now to remove it:
+        let removeIt = e.target.parentNode
+        
+        // way-1:
+        // removeIt.remove();
+
+        // way-2:
+        // removeIt.parentNode.removeChild(removeIt);
+
+
+        // now if you click on 'google' then the complete 'ul' will be removed, so to remove only images:
+        // console.log(e.target.tagName); // it gives the tagName of target, that is whether its 'IMG' or 'LI'
+        if(e.target.tagName === 'IMG'){ // if tagName is 'IMG' then only remove
+            removeIt.remove();
+        }
+        
+    })
+
+</script>
+</html>
