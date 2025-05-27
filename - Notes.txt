@@ -1,0 +1,7 @@
+-- To master JavaScript:
+1. Objects
+2. Browser web events or browser events
+
+
+-- JavaScript is dynamically typed language.
+-- JavaScript is by default synchronous.

@@ -1,33 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body style="background-color: #212121; color: #fff;">
-    
 </body>
 
 <script>
+
+    // ==============================
+    // 📌 DOM ELEMENT CREATION
+    // ==============================
     const divEle = document.createElement('div');
-    console.log(divEle);
-    divEle.className = "main"
-    divEle.id = "1"
-    divEle.setAttribute("title", "generated title") // we can set other attributes like id, className, style and all like this too. Its also more optimised than them, so its the more preferred one.
-    divEle.style.backgroundColor = "orange"
-    divEle.style.padding = "12px"  
-    
-    // way-1:
-    // divEle.innerText = "Hii I'm BloodWyrm"
+    console.log(divEle); // Logs the created div element
 
-    //way-2: 
-    const addText = document.createTextNode("Hii I'm BloodWyrm")
-    divEle.appendChild(addText)
+    // ==============================
+    // 📌 SETTING ATTRIBUTES
+    // ==============================
+    divEle.className = "main";
+    divEle.id = "1";
+    divEle.setAttribute("title", "generated title"); // More flexible/optimized way to set any attribute
 
-    // refer to documnetation for difference between both the ways
+    // ==============================
+    // 📌 STYLING ELEMENT
+    // ==============================
+    divEle.style.backgroundColor = "orange";
+    divEle.style.padding = "12px";
 
-    document.body.appendChild(divEle)
+    // ==============================
+    // 📌 ADDING TEXT CONTENT
+    // ==============================
+
+    // Way-1 (Quick and Simple):
+    // divEle.innerText = "Hii I'm BloodWyrm";
+    // document.body.appendChild(divEle);
+
+    // Way-2 (More DOM-Controlled & Flexible):
+    const addText = document.createTextNode("Hii I'm BloodWyrm");
+    divEle.appendChild(addText);
+    document.body.appendChild(divEle);
+
+    /*
+    ❓ What's the difference between both ways? Also, how is the second one optimized?
+
+    ✅ Answer:
+
+    ➤ Way-1 (`innerText`):
+       - Directly sets the textual content of the element.
+       - Replaces any existing content in the element.
+       - Slightly higher overhead because it triggers reflow/repaint if already in the DOM.
+       - Can inadvertently strip HTML or special characters if used improperly.
+
+    ➤ Way-2 (`createTextNode` + `appendChild`):
+       - Creates a text node explicitly and appends it to the element.
+       - Better when you need granular control over child nodes.
+       - More optimized for complex DOM manipulation (especially if working with fragments or inserting multiple elements).
+       - Avoids potential innerHTML pitfalls and is safer in dynamic insertion contexts.
+
+    ✅ In general, `createTextNode` is preferred in complex or programmatic DOM building scenarios.
+        Refer to markdown document for more information.
+    */
 
 </script>
+
 </html>

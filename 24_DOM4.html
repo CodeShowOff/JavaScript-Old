@@ -1,54 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body style="background-color: #212121; color: #fff;">
+
+    <!-- 📄 Initial List -->
     <ul class="language">
         <li>JavaScript</li>
-
     </ul>
+
 </body>
 
 <script>
-    // add elements:
-    // way-1:
-    function addLanguage(langName){
-        const li = document.createElement('li')
-        li.innerHTML = `${langName}`
-        document.querySelector('.language').appendChild(li)
+
+    // ==============================
+    // 📌 ADDING ELEMENTS TO THE LIST
+    // ==============================
+
+    // --- Way-1: Simple but less optimized ---
+    function addLanguage(langName) {
+        const li = document.createElement('li');
+        li.innerHTML = `${langName}`; // ⚠️ Can be less secure if user input is involved
+        document.querySelector('.language').appendChild(li);
     }
-    addLanguage('Java')
-    addLanguage('TypeScript')
 
-    // way-2(optimised):
-    function addLanguageOpt(langName){
-        const li = document.createElement('li')
-        li.appendChild(document.createTextNode(langName))
-        document.querySelector('.language').appendChild(li)
+    addLanguage('Java');
+    addLanguage('TypeScript');
+
+    // --- Way-2: Optimized and safer ---
+    function addLanguageOpt(langName) {
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName)); // ✅ Better: avoids HTML parsing
+        document.querySelector('.language').appendChild(li);
     }
-    addLanguageOpt('Cpp')
-    addLanguageOpt('Python')
 
+    addLanguageOpt('Cpp');
+    addLanguageOpt('Python');
 
-    // edit elements:
-    // way-1:
-    const secondLang = document.querySelector('li:nth-child(2)')
-    // secondLang.innerHTML = "Mojo"  <- Not optimised
-    const newli = document.createElement('li')
-    newli.textContent = "Mojo"
-    secondLang.replaceWith(newli)
+    /* 
+    ❓ Why is Way-2 (TextNode) better?
 
-    // way-2:
-    const firstLang = document.querySelector('li:first-child')
-    firstLang.outerHTML = '<li>Ruby</li>'
+    ✅ Answer:
+    - It avoids directly injecting HTML, which prevents XSS risks.
+    - It’s safer and more performant for adding plain text.
+    - It doesn’t require parsing strings as HTML, saving resources.
+    */
+
+    // ==============================
+    // ✏️ EDITING EXISTING ELEMENTS
+    // ==============================
+
+    // --- Way-1: Replace using new element (Optimized) ---
+    const secondLang = document.querySelector('li:nth-child(2)');
+
+    // ⚠️ This is NOT optimized:
+    // secondLang.innerHTML = "Mojo"
+
+    const newli = document.createElement('li');
+    newli.textContent = "Mojo"; // ✅ Safer than innerHTML
+    secondLang.replaceWith(newli);
+
+    // --- Way-2: Replace using outerHTML (Quick) ---
+    const firstLang = document.querySelector('li:first-child');
+    firstLang.outerHTML = '<li>Ruby</li>'; // ⚠️ Replaces the whole node as a string
+
+    /*
+    ❓ Which is better for editing?
     
+    ✅ Answer:
+    - `replaceWith()` and `textContent` are **better for performance and safety**.
+    - `outerHTML` is fast but parses a string into DOM and can be unsafe with untrusted data.
+    */
 
-    // remove elements:
-    const lastLang = document.querySelector('li:last-child')
-    lastLang.remove()
+    // ==============================
+    // ❌ REMOVING ELEMENTS
+    // ==============================
+    const lastLang = document.querySelector('li:last-child');
+    lastLang.remove(); 
 
 </script>
 

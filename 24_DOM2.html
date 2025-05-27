@@ -1,41 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Manipulation</title>
 </head>
+
 <body style="background-color: #212121; color: #fff;">
+
+    <!-- 📄 Parent with Children -->
     <div class="parent">
         <div class="day">Monday</div>
         <div class="day">Tuesday</div>
         <div class="day">Wednesday</div>
         <div class="day">Thursday</div>
     </div>
-</body>
-<script>
-    const parent = document.querySelector('.parent');
-    // console.log(parent);
-    // console.log(parent.children); // so from this we know that every element has its children.
-    
-    // console.log(parent.children[1].innerHTML);
 
+</body>
+
+<script>
+
+    // ==============================
+    // 📌 SELECTING PARENT ELEMENT
+    // ==============================
+    const parent = document.querySelector('.parent');
+
+    // ==============================
+    // 🔍 ACCESSING CHILDREN
+    // ==============================
+
+    console.log(parent.children); // so from this we know that every element has its children.
+
+    // Accessing a specific child element’s content
+    // console.log(parent.children[1].innerHTML); // Output: "Tuesday"
+
+    // Iterating over child elements
     // for (let i = 0; i < parent.children.length; i++) {
-    //     console.log(parent.children[i].innerHTML);        
+    //     console.log(parent.children[i].innerHTML);
     // }
 
-    parent.children[1].style.backgroundColor = "green";
-    parent.children[2].style.backgroundColor = "orange";
+    // ==============================
+    // 🎨 STYLING SPECIFIC CHILDREN
+    // ==============================
+    parent.children[1].style.backgroundColor = "green";   
+    parent.children[2].style.backgroundColor = "orange"; 
 
-    // console.log(parent.firstElementChild); // accesses the first element (not text nodes or comments) that is a child of parent.
-    // console.log(parent.lastElementChild); // accesses the last element (not text nodes or comments) that is a child of parent.
-    
-    // const dayOne = document.querySelector('.day');
-    // console.log(dayOne);
-    // console.log(dayOne.parentElement); // to go to parent element from child element
-    // console.log(dayOne.nextElementSibling); // to go to next sibling element
+    // ==============================
+    // 🚀 NAVIGATING THROUGH ELEMENTS
+    // ==============================
 
+    // Getting first and last child elements (ignores text nodes and comments) <- refer to markdown document for more information.
+    console.log(parent.firstElementChild); // <div class="day">Monday</div>
+    console.log(parent.lastElementChild);  // <div class="day">Thursday</div>
+
+
+    // ==============================
+    // 🔁 TRAVERSING FROM CHILD TO PARENT/SIBLING
+    // ==============================
+
+    // Select a single child
+    const dayOne = document.querySelector('.day');
+
+    // Traverse to its parent
+    console.log(dayOne.parentElement); // Outputs .parent div
+
+    // Traverse to its next sibling
+    console.log(dayOne.nextElementSibling); // <div class="day" style="background-color: green;">Tuesday</div>
+
+
+    // ==============================
     console.log("Nodes: ", parent.childNodes); // gives all the child nodes.
 
+    /*
+    ❓ What's the difference between childNodes and children?
+
+    ✅ Answer:
+    - `childNodes`: Returns **all** nodes — including **text nodes**, **comment nodes**, and **element nodes**.
+    - `children`: Returns only **element nodes**, which is more useful when you only care about actual HTML elements.
+
+    Example: Extra whitespace between tags is counted as a text node in `childNodes`.
+    */
+
 </script>
+
 </html>

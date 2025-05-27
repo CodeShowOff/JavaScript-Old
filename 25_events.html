@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML Events</title>
 </head>
+
 <body style="background-color: #414141; color: aliceblue;">
     <h2>Images:</h2>
     <div>
@@ -29,119 +31,160 @@
     </div>
 </body>
 <script>
-    // There are several ways to handle events in JavaScript:
-    
-    // 1. Inline Event Handlers (not recommended): in html element itselt:
+    // ==========================================
+    // Topic: Event Types (Ways to Add Events)
+    // ==========================================
+
+    // 1. Inline Event Handler (not recommended - mixes HTML & JS)
     // <button onclick="alert('Clicked!')">Click Me</button>
 
-    // 2. HTML DOM Property (no problem, but gives only limited information): 
+    // 2. DOM Property (works, but limited - only one event handler at a time)
     // document.getElementById('owl').onclick = function () {
-    //     alert("clicked on owl")
+    //     alert("Clicked on owl");
     // }
 
-    // 3. addEventListener() (recommended):
-    // document.getElementById('owl').addEventListener('click', function(){
-    //     alert('clicked on owl')
-    // }, false)
+    // 3. addEventListener (recommended - supports multiple handlers and better control)
+    // document.getElementById('owl').addEventListener('click', function () {
+    //     alert('Clicked on owl');
+    // }, false);
 
 
+    // ==========================================
+    // Topic: Event Object (e)
+    // ==========================================
 
-    // document.getElementById('owl').addEventListener('click', function(e){
-    //     console.log(e);
-    //     // 'e' is an object and has many events mostly of browser and environment:
-    //     // important ones are: timestamp, type, preventDefault, target, toElement, srcElement, currentTarget,
-    //     // clientX, clientY, screenX, screenY, altkey, ctrlkey, shiftkey, keyCode
-    // }, false)
+    // document.getElementById('owl').addEventListener('click', function(e) {
+    //         console.log(e);
 
-
-    // event propagation:
-    // 1. event bubbling
-    // 2. event capturing
-    
-    // when third parameter is false: event bubbling:
-    // document.getElementById('images').addEventListener('click', function(e){
-    //     console.log('clicked inside the ul');
-
-    //     // if we click anywhere in 'ul':
-    //     // output: clicked inside the ul
-    // }, false)
-    
-    // document.getElementById('owl').addEventListener('click', function(e){
-    //     console.log('owl clicked');
-
-    //     // if we click anywhere in 'ul' except 'owl':
-    //     // output: clicked inside the ul
-
-    //     // if we click on 'owl':
-    //     // output: owl clicked
-    //     //         clicked inside the ul
-    //     // so here event propagated from bottom to top, this is called bubbling.
-    // }, false)
+    //         // 'e' is the event object and contains useful properties such as:
+    //         // - e.type, e.timestamp
+    //         // - e.target, e.currentTarget, e.srcElement, e.toElement
+    //         // - e.preventDefault(), e.stopPropagation()
+    //         // - e.clientX, e.clientY, e.screenX, e.screenY
+    //         // - e.altKey, e.ctrlKey, e.shiftKey, e.keyCode
+    // }, false);
 
 
-    // // when third parameter is true: event capturing:
+    // ==========================================
+    // Topic: Event Propagation - Bubbling
+    // ==========================================
+
+    // Bubbling = from child to parent (default behavior when third parameter is false)
+
     // document.getElementById('images').addEventListener('click', function (e) {
-    //     console.log('clicked inside the ul');
+    //     console.log('Clicked inside the UL');
 
-    //     // if we click anywhere in 'ul':
-    //     // output: clicked inside the ul
-    // }, true)
+    //     // Output if we click anywhere in UL:
+    //     //     Clicked inside the UL
+    // }, false);
+
 
     // document.getElementById('owl').addEventListener('click', function (e) {
     //     console.log('owl clicked');
 
-    //     // if we click anywhere in 'ul' except 'owl':
-    //     // output: clicked inside the ul
+    //     // Explanation:
+    //     // - When you click on the 'owl' element:
+    //     //   Output:
+    //     //     owl clicked
+    //     //     clicked inside the UL
+    //     //
+    //     // - If you click anywhere else inside the UL (but not on 'owl'):
+    //     //   Output:
+    //     //     clicked inside the UL
+    //     //
+    //     // This demonstrates **event bubbling**:
+    //     // The event starts from the clicked element and bubbles up to its ancestors i.e. propagated from bottom to top.
+    // }, false);
 
-    //     // if we click on 'owl':
-    //     // output: clicked inside the ul
-    //     //         owl clicked      
-    //     // so here event propagated from top to bottom, this is called capturing.
-    // }, false)
 
 
-    // // to stop event propagation:
-    // document.getElementById('images').addEventListener('click', function(e){
-    //     console.log('clicked inside the ul');
-    // }, false)
+    // ==========================================
+    // Topic: Event Propagation - Capturing
+    // ==========================================
+
+    // Capturing = from parent to child (when third parameter is true)
     
-    // document.getElementById('owl').addEventListener('click', function(e){
-    //     console.log('owl clicked');
-    //     // this will prevent propagation:
-    //     e.stopPropagation()
-    // }, false)
+    // document.getElementById('images').addEventListener('click', function (e) {
+    //     console.log('Clicked inside the UL');
+
+    //     // Output if we click anywhere in UL:
+    //     //     Clicked inside the UL
+    // }, true);
+
+    // document.getElementById('owl').addEventListener('click', function (e) {
+    //     console.log('Owl clicked');
+
+    //     // Explanation:
+    //     // - If you click on 'owl':
+    //     //   Output:
+    //     //     clicked inside the UL
+    //     //     Owl clicked
+    //     //
+    //     // - If you click anywhere else in the UL except 'owl':
+    //     //   Output:
+    //     //     clicked inside the UL
+    //     //
+    //     // This demonstrates **event capturing**:
+    //     // The event starts from the outermost ancestor and is captured down to the target element,
+    //     // i.e., it propagates from top to bottom through the DOM hierarchy before reaching the target.
+    // }, false);       
 
 
-    // // to prevent or change default behaviour:
-    // document.getElementById('google').addEventListener('click', function(e) {
-    //     e.preventDefault(); // due to this, link wont take me to google.com
-    //     console.log('google clicked');        
-    // })
+
+    // ==========================================
+    // Topic: stopPropagation (Prevent Bubbling)
+    // ==========================================
+
+    // document.getElementById('images').addEventListener('click', function (e) {
+    //     console.log('Clicked inside the UL');
+    // }, false);
+
+    // document.getElementById('owl').addEventListener('click', function (e) {
+    //     console.log('Owl clicked');
+    //     e.stopPropagation(); // stops the event from bubbling up to UL
+    // }, false);
 
 
-    // to remove items on clicking:
-    document.querySelector('#images').addEventListener('click', function(e){
-        console.log(e);
-        console.log(e.target); // gives the target where clicked.
-        console.log(e.target.parentNode); // gives the parent node of target.
 
-        // now to remove it:
-        let removeIt = e.target.parentNode
-        
-        // way-1:
-        // removeIt.remove();
+    // ==========================================
+    // Topic: preventDefault (Stop Default Behavior)
+    // ==========================================
 
-        // way-2:
-        // removeIt.parentNode.removeChild(removeIt);
+    // document.getElementById('google').addEventListener('click', function (e) {
+    //     e.preventDefault(); // prevents navigation to Google.com
+    //     console.log('Google link clicked');
+    // });
 
 
-        // now if you click on 'google' then the complete 'ul' will be removed, so to remove only images:
-        // console.log(e.target.tagName); // it gives the tagName of target, that is whether its 'IMG' or 'LI'
-        if(e.target.tagName === 'IMG'){ // if tagName is 'IMG' then only remove
-            removeIt.remove();
-        }
-        
-    })
+    // ==========================================
+    // Topic: Event Delegation & Removing Elements
+    // ==========================================
 
+    // document.querySelector('#images').addEventListener('click', function (e) {
+    //     console.log(e);
+    //     console.log(e.target);         // The actual element that was clicked
+    //     console.log(e.target.parentNode); // The parent of the clicked element
+    //     console.log(e.target.tagName); // It gives the tagName of target -> 'IMG', 'LI', etc.
+
+    //     // now to remove it:
+    //     let removeIt = e.target.parentNode;
+
+    //     // way-1:
+    //     // removeIt.remove();
+
+    //     // way-2:
+    //     // removeIt.parentNode.removeChild(removeIt);
+
+
+    //     // If you click on 'google' then the complete 'ul' will be removed, so to remove only images:
+    //     // Use tagName to filter only <img> clicks
+    //     if (e.target.tagName === 'IMG') {
+    //         removeIt.remove(); // Removes the <li> containing the image
+    //     }
+    //     // Notes:
+    //     // - This ensures that clicking the Google link doesn't remove the entire <ul>
+    //     // - Also demonstrates event delegation (handling all child <li> events from parent <ul>)
+    // });
 </script>
+
 </html>
