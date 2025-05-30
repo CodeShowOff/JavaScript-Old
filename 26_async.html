@@ -1,18 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    
-</body>
-<script>
-    
-    // setTimeout in JavaScript APIs is used to schedule a function to run after a specified delay.It’s part of the 
-    // browser’s(or Node.js’s) asynchronous event - handling system, allowing non - blocking execution.Here's why 
-    // and how it's used:
-</script>
-</html>
 
+<body>
+    <h1>Shubham</h1>
+    <button id="stop">Stop</button>
+</body>
+
+<script>
+
+    // ==============================
+    // ⏱️ setTimeout() Basics
+    // ==============================
+
+    // The setTimeout function is used to schedule a task to run after a specified delay.
+    // It is asynchronous and non-blocking, allowing the main thread to continue running.
+    // setTimeout is not part of the core JavaScript engine — it's provided by the browser or Node.js as part of their Web APIs or environment-specific asynchronous handling systems.
+
+
+    const myFunc = function () {
+        console.log("Shubham");
+    };
+
+    setTimeout(myFunc, 2000); //Logs "Shubham" in the console after 2 second
+
+    /*
+    ❓ Is setTimeout part of JavaScript?
+    
+    ✅ Answer:
+    No — it's part of the **Web APIs** provided by the browser (or Node.js in server environments).
+    JavaScript itself does not have built-in timers. The JS engine queues them using the event loop.
+    */
+
+    // ==============================
+    // 🖊️ setTimeout to Modify DOM
+    // ==============================
+
+    const changeText = function () {
+        document.querySelector('h1').innerHTML = "BloodWyrm";
+    };
+
+    // Schedules the heading text to change after 2 seconds
+    // setTimeout(changeText, 2000);
+    const timeout = setTimeout(changeText, 2000); // <- refer to 26_async.jpg for explanation
+
+    /*
+    ✅ Real-world use case:
+    Ads, modals, or auto-alerts that appear after a delay — e.g., 2 seconds after page load.
+    */
+
+    // ==============================
+    // 🛑 Cancel setTimeout with clearTimeout()
+    // ==============================
+
+    // If user clicks the "Stop" button *before* the 2 seconds elapse, cancel the change.
+    document.querySelector('#stop').addEventListener('click', function () {
+        clearTimeout(timeout); // Cancels the scheduled task
+        console.log("stopped");
+    });
+
+    /*
+    ❓ When does clearTimeout work?
+
+    ✅ Answer:
+    - Only if it’s called **before** the scheduled `setTimeout` callback executes.
+    - If 2 seconds pass before you click "Stop", it will be too late — the change will happen.
+    */
+
+</script>
+
+</html>

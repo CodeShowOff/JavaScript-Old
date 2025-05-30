@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <h1>Counter</h1>
+        <h2>0</h2>
+        <button id="start">start</button>
+        <button id="stop">stop</button>
+        <button id="reset">reset</button>
+    </div>
+
+</body>
+<script>
+    const counter = document.querySelector('h2');
+
+    let count = 0;
+    let interval = null;
+
+    document.querySelector('#start').addEventListener('click', function () {
+        if (interval !== null) return; // prevent multiple intervals
+        interval = setInterval(function () {
+            count++;
+            counter.innerText = count;
+        }, 100);
+    });
+
+    document.querySelector('#stop').addEventListener('click', function () {
+        clearInterval(interval);
+        interval = null; // reset to allow restarting
+    });
+
+    document.querySelector('#reset').addEventListener('click', function () {
+        clearInterval(interval);
+        interval = null;
+        count = 0;
+        counter.innerText = 0;
+    });
+</script>
+
+</html>

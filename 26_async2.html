@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setInterval Example</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <h1>Open console in browser</h1>
+    </div>
+</body>
+
+<script>
+    // ==============================
+    // 🔁 setInterval() Explanation
+    // ==============================
+
+    /*
+    setInterval is a Web API that repeatedly executes a function after a fixed time delay (in ms).
+    Like setTimeout, it's not part of core JavaScript — it's provided by the browser or Node.js environment.
+
+    Syntax:
+    setInterval(callbackFunction, delayInMilliseconds, optionalArg1, optionalArg2, ...)
+    */
+
+    const myFunc = function (str) {
+        console.log(str);                 // prints "hi"
+        console.log(Math.random());      // prints a new random number each second
+    };
+
+    // Start the interval loop: calls myFunc every 1000ms (1 sec), passing "hi" as the argument
+    const intervalId = setInterval(myFunc, 1000, "hi");
+
+    /*
+    ❓ Why use setInterval?
+    ✅ Useful for tasks that repeat regularly, like:
+       - Updating a clock
+       - Polling a server
+       - Animations or UI updates
+    */
+
+    // ==============================
+    // 🛑 Stopping setInterval
+    // ==============================
+
+    // To stop the interval, use clearInterval and pass the interval ID
+    // Example: Uncomment the line below to stop it immediately
+    // clearInterval(intervalId);
+
+</script>
+
+</html>
