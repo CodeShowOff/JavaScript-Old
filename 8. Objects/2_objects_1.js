@@ -45,7 +45,7 @@ console.log(user["email"]);// shubham@fb.com; value didnt change
 
 
 
-// FUnctions can be treated as variales:
+// Functions can be treated as variales:
 user.greetings = function(){
     console.log("Hello user");
 }
