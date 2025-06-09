@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Closure</title>
+</head>
+
+<body>
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+</body>
+
+<script>
+    // ---------------------------------------------
+    // Using Closures for Event Handlers (Scalability)
+    // ---------------------------------------------
+
+    // ✅ Manual handling for small data:
+    // document.getElementById('orange').onclick = function(){
+    //     document.body.style.backgroundColor = 'orange';
+    // }
+    // document.getElementById('green').onclick = function(){
+    //     document.body.style.backgroundColor = 'green';
+    // }
+
+    // ❌ Not scalable for multiple buttons. We need a generic approach.
+
+    // ❌ Incorrect approach:
+    // function clickHandler(color){
+    //     document.body.style.backgroundColor = `${color}`
+    // }
+    // document.getElementById('orange').onclick = clickHandler("orange")
+    // ❗ Issue: This immediately executes the function instead of assigning it to run on click.
+
+    // ✅ Correct approach using closure:
+    function clickHandler(color) {
+        return function () {
+            document.body.style.backgroundColor = `${color}`;
+        }
+    }
+
+    document.getElementById('orange').onclick = clickHandler("orange");
+    document.getElementById('green').onclick = clickHandler("green");
+</script>
+
+</html>
